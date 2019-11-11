@@ -91,10 +91,26 @@ module.exports = () => {
       historyApiFallback: true,
       port: 3000,
       proxy: {
-        context: ["/api/*", "/auth/google", "/auth/facebook"],
-        target: "http://localhost:5000",
-        secure: false,
-        changeOrigin: true,
+        "/api/**": {
+          target: "http://localhost:5000",
+          secure: false,
+          changeOrigin: true,
+        },
+        "/auth/google": {
+          target: "http://localhost:5000",
+          secure: false,
+          changeOrigin: true,
+        },
+        "/auth/facebook": {
+          target: "http://localhost:5000",
+          secure: false,
+          changeOrigin: true,
+        },
+        "/auth/github": {
+          target: "http://localhost:5000",
+          secure: false,
+          changeOrigin: true,
+        },
       },
     },
   };

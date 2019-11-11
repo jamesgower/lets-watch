@@ -1,3 +1,10 @@
+.login__container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border: 2px solid white;
+}
+
 .btn__google {
   background-color: #db4437;
   color: #fff;
@@ -13,6 +20,15 @@
   &:hover {
     color: #fff;
     background-color: darken(#3b5998, 7%);
+  }
+}
+
+.btn__github {
+  background-color: #000;
+  color: #fff;
+  &:hover {
+    color: #fff;
+    background-color: lighten(#000, 7%);
   }
 }
 
