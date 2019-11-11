@@ -9,6 +9,9 @@ export const fetchUser = (): ((dispatch: Dispatch) => Promise<void>) => async (
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const logout = (): ((dispatch: Dispatch) => void) => (dispatch): void => {
+export const logout = (): ((dispatch: Dispatch) => void) => async (
+  dispatch,
+): Promise<void> => {
+  await axios.get("/api/logout");
   dispatch({ type: LOGOUT });
 };

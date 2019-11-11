@@ -1,12 +1,21 @@
 import React from "react";
+import LoginButton from "../misc/LoginButton";
 
 const Login: React.FC = (): JSX.Element => {
   return (
     <div>
-      <a className="btn btn-danger" href="/auth/google">
-        <i className="fab fa-google" />
-        Login with Google
-      </a>
+      <LoginButton
+        text="Login with Google"
+        icon="fab fa-google"
+        link="/auth/google"
+        name="google"
+      />
+      <LoginButton
+        text="Login with Facebook"
+        icon="fab fa-facebook"
+        link="/auth/facebook"
+        name="facebook"
+      />
     </div>
   );
 };

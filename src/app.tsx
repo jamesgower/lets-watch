@@ -7,6 +7,7 @@ import configureStore from "./store/store";
 import AppRouter from "./routes/Router";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "./scss/styles.scss";
+import "animate.css/animate.min.css";
 
 const store = configureStore();
 

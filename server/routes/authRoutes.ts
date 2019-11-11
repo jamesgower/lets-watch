@@ -8,6 +8,15 @@ module.exports = (app): void => {
     }),
   );
 
+  app.get("/auth/facebook", passport.authenticate("facebook", { scope: "email" }));
+
+  app.get(
+    "/auth/facebook/callback",
+    passport.authenticate("facebook", (req, res): void => {
+      res.redirect("/");
+    }),
+  );
+
   app.get("/api/logout", (req, res): void => {
     req.logout();
     res.redirect("/");

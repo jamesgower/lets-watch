@@ -1,7 +1,7 @@
 {
-  "name": "typescript-react-boilerplate",
+  "name": "lets-watch",
   "version": "1.0.0",
-  "description": "React boilerplate with TypeScript, Babel & Webpack.",
+  "description": "Find and save your favourite movies and TV shows",
   "main": "app.ts",
   "scripts": {
     "start": "webpack-dev-server",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jamesgower/typescript-react-boilerplate.git"
+    "url": "git+https://github.com/jamesgower/lets-watch.git"
   },
   "keywords": [
     "React",
@@ -21,9 +21,9 @@
   "author": "James Gower",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jamesgower/typescript-react-boilerplate/issues"
+    "url": "https://github.com/jamesgower/lets-watch/issues"
   },
-  "homepage": "https://github.com/jamesgower/typescript-react-boilerplate#readme",
+  "homepage": "https://github.com/jamesgower/lets-watch#readme",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
@@ -69,6 +69,7 @@
   "dependencies": {
     "@types/react-dom": "^16.8.5",
     "@types/react-router-dom": "^4.3.4",
+    "animate.css": "^3.7.2",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "bootstrap-css-only": "^4.3.1",
@@ -82,6 +83,7 @@
     "mongoose": "^5.7.7",
     "node-sass": "^4.12.0",
     "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",
     "react": "^16.8.6",
