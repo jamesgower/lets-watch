@@ -4,7 +4,7 @@ import passport from "passport";
 import cors from "cors";
 import cookieSession from "cookie-session";
 import bodyParser from "body-parser";
-import "./models/User";
+import "./models/User.model";
 
 require("dotenv").config();
 require("./services/passport");
@@ -12,7 +12,10 @@ require("./services/passport");
 const path = require("path");
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGO_DB_URI);
+mongoose.connect(process.env.MONGO_DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,7 +31,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/authRoutes")(app);
+require("./routes/auth.routes")(app);
+require("./routes/movie.routes")(app);
 
 if (process.env.NODE_ENV === "production") {
   const publicPath = path.join(__dirname, "../dist");

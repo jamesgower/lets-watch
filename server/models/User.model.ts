@@ -3,10 +3,19 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  userID: String,
-  firstName: String,
+  userID: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
   lastName: String,
-  email: String,
+  email: {
+    type: String,
+    default: null,
+  },
   image: String,
 });
 

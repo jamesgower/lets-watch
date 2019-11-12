@@ -1,4 +1,5 @@
-const passport = require("passport");
+import crypto from "crypto";
+import passport from "passport";
 
 module.exports = (app): void => {
   app.get(
@@ -24,6 +25,18 @@ module.exports = (app): void => {
   app.get("/auth/github", passport.authenticate("github", { scope: "user" }));
 
   app.get("/auth/github/callback", passport.authenticate("github"), (req, res): void => {
+    res.redirect("/");
+  });
+
+  app.get("/auth/reddit", (req, res) => {
+    req.session.state = crypto.randomBytes(32).toString("hex");
+    passport.authenticate("reddit", { state: req.session.state, duration: "permanent" })(
+      req,
+      res,
+    );
+  });
+
+  app.get("/auth/reddit/callback", passport.authenticate("reddit"), (req, res): void => {
     res.redirect("/");
   });
 

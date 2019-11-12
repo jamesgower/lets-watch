@@ -11,12 +11,12 @@ interface LoginProps {
 const LoginButton: React.FC<LoginProps> = ({ icon, text, link, name }): JSX.Element => {
   return (
     <button
-      className={`btn btn__${name}`}
+      className={`login-button__btn btn__${name}`}
       type="button"
       onClick={(): string => (window.location.href = link)}
     >
-      <i className={`login__icon ${icon}`} />
-      {text}
+      <i className={`login-button__icon ${icon}`} />
+      <p className="login-button__text">{text}</p>
     </button>
   );
 };

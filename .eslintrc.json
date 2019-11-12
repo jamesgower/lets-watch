@@ -26,8 +26,17 @@
     "no-plusplus": "off",
     "react/prop-types": "off",
     "no-underscore-dangle": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warn"]
+      }
+    }
+  ],
   "settings": {
     "react": {
       "pragma": "React",
