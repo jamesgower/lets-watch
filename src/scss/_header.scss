@@ -1,8 +1,13 @@
 .header__container {
   display: flex;
   flex-direction: row;
-  border-bottom: 2px solid red;
   justify-content: space-between;
+  border-bottom: 2px solid red;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .header__img {
@@ -11,6 +16,14 @@
   width: 40px;
   cursor: pointer;
   margin-right: 20px;
+}
+
+.header__link {
+  display: inline-flex;
+  font-size: 20px;
+  width: 140px;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__not-you {

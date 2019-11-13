@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import passport from "passport";
+import { upload, storage } from "../services/multer";
 
 module.exports = (app): void => {
   app.get(
@@ -38,6 +39,11 @@ module.exports = (app): void => {
 
   app.get("/auth/reddit/callback", passport.authenticate("reddit"), (req, res): void => {
     res.redirect("/");
+  });
+
+  app.post("/api/upload", upload.single("file"), (req, res, err) => {
+    if (err) throw err;
+    res.status(201).send();
   });
 
   app.get("/api/current_user", (req, res): void => {

@@ -1,11 +1,16 @@
 import React from "react";
+import { Container } from "reactstrap";
 import Header from "./Header";
+import TopMovies from "../TopMovies";
 
 const Home: React.FC = (): JSX.Element => {
   return (
     <div>
       <Header />
-      <h1>Home</h1>
+      <Container>
+        <TopMovies />
+        {/* <TopTv /> */}
+      </Container>
     </div>
   );
 };

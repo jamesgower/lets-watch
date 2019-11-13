@@ -6,7 +6,7 @@ import Home from "../components/landing/Home";
 import NotFoundPage from "../components/NotFoundPage";
 import Login from "../components/landing/Login";
 import { AuthState, ProfileState, AppState } from "../interfaces/app.i";
-import * as actions from "../actions/auth.actions";
+import * as authActions from "../actions/auth.actions";
 import PrivateRoute from "./PrivateRoute";
 import Account from "../components/account/Account";
 
@@ -46,4 +46,4 @@ class AppRouter extends Component<RouterProps> {
 
 const mapStateToProps = ({ auth }): AppState => ({ auth });
 
-export default connect(mapStateToProps, actions)(AppRouter);
+export default connect(mapStateToProps, authActions)(AppRouter);

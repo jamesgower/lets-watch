@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { FETCH_USER, LOGOUT } from "../interfaces/actions.i";
+import { FETCH_USER, LOGOUT } from "../interfaces/auth.actions.i";
 
 export const fetchUser = (): ((dispatch: Dispatch) => Promise<void>) => async (
   dispatch,

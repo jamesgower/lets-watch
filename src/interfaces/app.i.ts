@@ -1,9 +1,15 @@
 export interface AppState {
-  auth: AuthState;
+  auth?: AuthState;
+  tmdb?: TMDBState;
 }
 
 export interface AuthState {
   profile: ProfileState;
+}
+
+export interface TMDBState {
+  movies: any;
+  tv: any;
 }
 
 export interface ProfileState {

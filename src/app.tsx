@@ -10,6 +10,7 @@ import "./scss/styles.scss";
 import "animate.css/animate.min.css";
 
 const store = configureStore();
+require("dotenv").config();
 
 const App: FC = (): JSX.Element => (
   <Provider store={store}>

@@ -1,4 +1,4 @@
-import { FETCH_USER, LOGOUT, AuthActionTypes } from "../interfaces/actions.i";
+import { FETCH_USER, LOGOUT, AuthActionTypes } from "../interfaces/auth.actions.i";
 import { AuthState } from "../interfaces/app.i";
 
 const defaultState: AuthState = {
