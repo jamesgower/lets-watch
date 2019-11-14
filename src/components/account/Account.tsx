@@ -4,16 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Col, Container, FormGroup, Label, Input, FormText } from "reactstrap";
 import { useForm } from "react-form";
 import { AuthState, AppState, ProfileState } from "../../interfaces/app.i";
-import InputField from "./InputField";
+import InputField from "../containers/InputField";
 
 interface AccountProps {
   profile: ProfileState;
 }
-
-/**
- * TODO
- * [ ] CHANGE TO CLASS COMPONENT
- */
 
 const Account: React.FC<AccountProps> = () => {
   const {

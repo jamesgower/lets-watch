@@ -10,6 +10,7 @@ export interface AuthState {
 export interface TMDBState {
   movies: any;
   tv: any;
+  current: any;
 }
 
 export interface ProfileState {

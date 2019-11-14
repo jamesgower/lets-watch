@@ -27,7 +27,8 @@
     "react/prop-types": "off",
     "no-underscore-dangle": "off",
     "no-console": "off",
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/no-array-index-key": "off"
   },
   "overrides": [
     {
