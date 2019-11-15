@@ -1,37 +1,42 @@
-.header__container {
+.navbar__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 2px solid red;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding: 5px 10vw;
+  color: $off-white;
+  margin-bottom: 30px;
 }
 
-.header__img {
+.navbar__img {
   border-radius: 50%;
   height: 40px;
   width: 40px;
   cursor: pointer;
   margin-right: 20px;
+  border: 2px solid red;
 }
 
-.header__link {
+.navbar__link {
   display: inline-flex;
   font-size: 20px;
   width: 140px;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
 }
 
-.header__not-you {
+.navbar__not-you {
   font-size: 12px;
   color: gray;
 }
 
-.header__links-container {
-  font-family: Roboto, sans-serif;
+.navbar__links-container {
   display: inline-flex;
 }

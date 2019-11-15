@@ -4,20 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actions from "../../actions/auth.actions";
 
-const Header = (): JSX.Element => {
+const NavBar = (): JSX.Element => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { image } = useSelector((state) => state.auth.profile);
   return (
-    <div className="header__container">
-      <div className="header__links-container">
-        <p className="header__link">Discover</p>
-        <p className="header__link">TV Shows</p>
-        <p className="header__link">Movies</p>
+    <div className="navbar__container">
+      <div className="navbar__links-container">
+        <p className="navbar__link">Discover</p>
+        <p className="navbar__link">TV Shows</p>
+        <p className="navbar__link">Movies</p>
       </div>
       <Dropdown isOpen={open} toggle={(): void => setOpen(!open)}>
         <DropdownToggle tag="div" data-toggle="dropdown" aria-expanded={open}>
-          <img src={image} alt="Profile" className="header__img" />
+          <img
+            src={
+              image ||
+              "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+            }
+            alt="Profile"
+            className="navbar__img"
+          />
         </DropdownToggle>
         <DropdownMenu right>
           <DropdownItem header>Profile</DropdownItem>
@@ -37,4 +44,4 @@ const Header = (): JSX.Element => {
   );
 };
 
-export default Header;
+export default NavBar;

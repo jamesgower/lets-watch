@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Header from "../components/landing/Header";
+import NavBar from "../components/navbar/NavBar";
 
 export default ({ component: Component, auth, ...rest }): JSX.Element => {
   return (
@@ -9,7 +9,7 @@ export default ({ component: Component, auth, ...rest }): JSX.Element => {
       component={(props): JSX.Element =>
         auth ? (
           <>
-            <Header />
+            <NavBar />
             <Component {...props} />
           </>
         ) : (

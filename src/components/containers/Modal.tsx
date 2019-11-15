@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import ReactModal from "react-modal";
+import { Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
+import advancedFormat from "dayjs/plugin/advancedFormat";
 import * as tmdbActions from "../../actions/tmdb.action";
 import { AppState } from "../../interfaces/app.i";
 import spinner from "./spinner.gif";
@@ -14,11 +17,22 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
   const dispatch = useDispatch();
+  dayjs.extend(advancedFormat);
+
   useEffect(() => {
-    dispatch(tmdbActions.fetchCurrentData(id, type));
+    type === "tv"
+      ? dispatch(tmdbActions.fetchCurrentTV(id))
+      : dispatch(tmdbActions.fetchCurrentMovie(id));
   }, []);
+
   const { current } = useSelector((state): AppState => state.tmdb);
+
+  console.log(current);
   const styles = {
+    overlay: {
+      backgroundColor: "rgba(255, 255, 255, 0.45)",
+      border: "1px solid black",
+    },
     content: {
       top: "50%",
       left: "50%",
@@ -27,7 +41,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       minWidth: "400px",
-      minHeight: "600px",
+      minHeight: "400px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      padding: "40px 20px",
+      borderRadius: "10px",
+      background: "#131319",
+      border: "none",
     },
   };
   ReactModal.setAppElement("#app");
@@ -36,33 +57,53 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={styles}
-      contentLabel="Example Modal"
+      contentLabel={current?.title ?? current?.name}
     >
       {current ? (
         <div className="modal__container">
-          <img
-            className="modal__poster"
-            alt={current.title}
-            src={`http://image.tmdb.org/t/p/w300/${current.poster}`}
-          />
-          <p className="modal__title">
-            {current.title}
-            {current.tagline && (
-              <span className="modal__tagline">{` - ${current.tagline}`}</span>
-            )}
-          </p>
-          <p className="modal__text">Genres: {current.genres}</p>
-          <p className="modal__text">Overview: {current.overview}</p>
-          <p className="modal__text">Rating: {current.rating}/10</p>
-          <p className="modal__text">Language: {current.language}</p>
-          <a href={current.homepage} className="modal__text">
-            Homepage
-          </a>
-          <p className="modal__text">Release date: {current.releaseDate}</p>
+          <div className="modal__header">
+            <div className="modal__poster-container">
+              <img
+                className="modal__poster"
+                alt={current.title}
+                src={`http://image.tmdb.org/t/p/w300/${current.poster}`}
+              />
+            </div>
+            <div className="modal__header-text-container">
+              <p className="modal__title">{current.title}</p>
+              {current.tagline && (
+                <p className="modal__tagline">{`"${current.tagline}"`}</p>
+              )}
+              <p className="modal__header-text">
+                {`Released ${dayjs(current.releaseDate).format("Do MMMM YYYY")}`}
+              </p>
+              <div className="modal__genres">
+                {current.genres.map((genre) => (
+                  <div key={genre} className={`modal__genre-${genre} modal__genre`}>
+                    {genre}
+                  </div>
+                ))}
+              </div>
+              {!!current.rating && <p className="modal__rating">{current.rating}/10</p>}
+            </div>
+          </div>
+
+          <p className="modal__overview">{current.overview}</p>
+          <div className="modal__button-container">
+            <Button outline color="success" style={{ display: "inline-block" }}>
+              {`Add to my ${type === "movies" ? "Movies" : "TV Shows"}`}
+            </Button>
+          </div>
         </div>
       ) : (
-        <img src={spinner} />
+        <img src={spinner} alt="Loading..." className="modal__loading-spinner" />
       )}
+      <i
+        className="fas fa-times modal__close-btn"
+        role="button"
+        tabIndex={0}
+        onClick={(): void => closeModal()}
+      />
     </ReactModal>
   );
 };

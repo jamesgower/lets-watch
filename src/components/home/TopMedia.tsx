@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row } from "reactstrap";
-import * as tmdbActions from "../actions/tmdb.action";
-import Card from "./containers/Card";
-import { AppState } from "../interfaces/app.i";
-import Carousel from "./containers/Carousel";
+import * as tmdbActions from "../../actions/tmdb.action";
+import Card from "../containers/Card";
+import { AppState } from "../../interfaces/app.i";
+import Carousel from "../containers/Carousel";
 
 interface Props {
   type: string;
@@ -27,8 +27,18 @@ const TopMedia: React.FC<Props> = ({ type, autoplay }) => {
           options={{
             type: "carousel",
             perView: 5,
-            focusAt: "center",
+            breakpoints: {
+              1200: {
+                perView: 3,
+              },
+              768: {
+                perView: 2,
+                peek: 50,
+              },
+            },
             autoplay,
+            animationTimingFunc: "cubic-bezier(0.680, -0.550, 0.265, 1.550)",
+            direction: type === "movies" ? "ltr" : "rtl",
           }}
           element={type}
         >

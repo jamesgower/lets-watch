@@ -1,4 +1,9 @@
-import { FETCH_USER, LOGOUT, AuthActionTypes } from "../interfaces/auth.actions.i";
+import {
+  FETCH_USER,
+  LOGOUT,
+  AuthActionTypes,
+  BROWSE_AS_GUEST,
+} from "../interfaces/auth.redux.i";
 import { AuthState } from "../interfaces/app.i";
 
 const defaultState: AuthState = {
@@ -14,6 +19,16 @@ export default (state = defaultState, action: AuthActionTypes): AuthState => {
     case LOGOUT:
       return {
         profile: null,
+      };
+    case BROWSE_AS_GUEST:
+      return {
+        profile: {
+          _id: null,
+          userID: null,
+          firstName: "Guest",
+          lastName: null,
+          email: null,
+        },
       };
     default:
       return state;

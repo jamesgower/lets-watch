@@ -2,9 +2,10 @@
 import {
   FETCH_TOP_MOVIES,
   FETCH_TOP_TV,
-  FETCH_CURRENT_DATA,
+  FETCH_CURRENT_MOVIE,
+  FETCH_CURRENT_TV,
   MovieActionTypes,
-} from "../interfaces/tmdb.actions.i";
+} from "../interfaces/tmdb.redux.i";
 import { TMDBState } from "../interfaces/app.i";
 
 const defaultState: TMDBState = {
@@ -25,7 +26,7 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
         ...state,
         tv: action.payload || null,
       };
-    case FETCH_CURRENT_DATA: {
+    case FETCH_CURRENT_MOVIE: {
       const {
         title,
         tagline,
@@ -51,6 +52,37 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
           backdrop: backdrop_path,
           poster: poster_path,
           releaseDate: release_date,
+        },
+      };
+    }
+    case FETCH_CURRENT_TV: {
+      const {
+        name,
+        backdrop_path,
+        first_air_date,
+        language,
+        genres,
+        homepage,
+        next_episode_to_air,
+        number_of_seasons,
+        overview,
+        poster_path,
+        vote_average,
+      } = action.payload;
+      return {
+        ...state,
+        current: {
+          title: name,
+          backdrop: backdrop_path,
+          releaseDate: first_air_date,
+          language,
+          genres: genres.map(({ name }) => name),
+          homepage,
+          nextEpisode: next_episode_to_air,
+          noSeasons: number_of_seasons,
+          overview,
+          poster: poster_path,
+          rating: vote_average,
         },
       };
     }
