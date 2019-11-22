@@ -28,6 +28,7 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
       };
     case FETCH_CURRENT_MOVIE: {
       const {
+        id,
         title,
         tagline,
         genres,
@@ -42,6 +43,7 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
       return {
         ...state,
         current: {
+          id,
           title,
           tagline,
           genres: genres.map(({ name }) => name),
@@ -57,6 +59,7 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
     }
     case FETCH_CURRENT_TV: {
       const {
+        id,
         name,
         backdrop_path,
         first_air_date,
@@ -72,6 +75,7 @@ export default (state = defaultState, action: MovieActionTypes): TMDBState => {
       return {
         ...state,
         current: {
+          id,
           title: name,
           backdrop: backdrop_path,
           releaseDate: first_air_date,

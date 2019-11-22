@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import LoginButton from "./LoginButton";
 import landing from "./img/landing.jpg";
 import * as authActions from "../../actions/auth.actions";
-import changeShade from "../../util/changeColorShade";
 
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
+  useEffect((): void => {
+    dispatch(authActions.fetchUser());
+  }, []);
+
   const buttonInfo = [
     {
       text: "Login with Google",
@@ -32,25 +35,26 @@ const Login: React.FC = (): JSX.Element => {
       link: "/auth/reddit",
       name: "reddit",
     },
-    {
-      text: "Browse as Guest",
-      icon: "fas fa-male",
-      link: "/",
-      onClick: (): void => dispatch(authActions.browseAsGuest()),
-      name: "guest",
-    },
   ];
   return (
-    <div
-      className="login__container"
-      style={{ backgroundImage: `url(${landing}) no-repeat center center fixed` }}
-    >
-      <div className="login-button__container">
-        {buttonInfo.map((button) => (
-          <LoginButton key={button.name} {...button} />
-        ))}
+    <>
+      <div
+        className="login__container"
+        style={{
+          background: `url(${landing}) no-repeat center center`,
+        }}
+      >
+        <div className="login__button-container">
+          <p className="login__title">Lets Watch</p>
+          <p className="login__text">Login to begin searching for TV shows & Movies</p>
+          {buttonInfo.map(
+            (button): JSX.Element => (
+              <LoginButton key={button.name} {...button} />
+            ),
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

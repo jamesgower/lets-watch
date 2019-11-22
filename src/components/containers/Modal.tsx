@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import ReactModal from "react-modal";
-import { Button } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import * as tmdbActions from "../../actions/tmdb.action";
-import { AppState } from "../../interfaces/app.i";
+import * as tmdbActions from "../../actions/tmdb.actions";
 import spinner from "./spinner.gif";
+import DatabaseButton from "./DatabaseButton";
+import useScreenWidth from "../../hooks/useScreenWidth";
+import { AppState } from "../../interfaces/app.i";
 
 interface ModalProps {
   isOpen: boolean;
@@ -15,19 +16,19 @@ interface ModalProps {
   type: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }): JSX.Element => {
   const dispatch = useDispatch();
   dayjs.extend(advancedFormat);
 
-  useEffect(() => {
+  useEffect((): void => {
     type === "tv"
       ? dispatch(tmdbActions.fetchCurrentTV(id))
       : dispatch(tmdbActions.fetchCurrentMovie(id));
   }, []);
 
-  const { current } = useSelector((state): AppState => state.tmdb);
+  const desktop = useScreenWidth(420);
+  const { current } = useSelector((state: AppState) => state.tmdb);
 
-  console.log(current);
   const styles = {
     overlay: {
       backgroundColor: "rgba(255, 255, 255, 0.45)",
@@ -51,12 +52,34 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
       border: "none",
     },
   };
+
+  const mobileStyles = {
+    overlay: {
+      backgroundColor: "rgba(255, 255, 255, 0.45)",
+      border: "1px solid black",
+    },
+    content: {
+      margin: "0 auto",
+      width: "90vw",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "10px",
+      background: "#131319",
+      border: "none",
+    },
+  };
   ReactModal.setAppElement("#app");
   return (
     <ReactModal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      style={styles}
+      style={desktop ? styles : mobileStyles}
       contentLabel={current?.title ?? current?.name}
     >
       {current ? (
@@ -78,22 +101,20 @@ const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }) => {
                 {`Released ${dayjs(current.releaseDate).format("Do MMMM YYYY")}`}
               </p>
               <div className="modal__genres">
-                {current.genres.map((genre) => (
-                  <div key={genre} className={`modal__genre-${genre} modal__genre`}>
-                    {genre}
-                  </div>
-                ))}
+                {current.genres.map(
+                  (genre): JSX.Element => (
+                    <div key={genre} className={`modal__genre-${genre} modal__genre`}>
+                      {genre}
+                    </div>
+                  ),
+                )}
               </div>
-              {!!current.rating && <p className="modal__rating">{current.rating}/10</p>}
+              {!!current.rating && <p className="modal__rating">{current.rating} / 10</p>}
             </div>
           </div>
 
           <p className="modal__overview">{current.overview}</p>
-          <div className="modal__button-container">
-            <Button outline color="success" style={{ display: "inline-block" }}>
-              {`Add to my ${type === "movies" ? "Movies" : "TV Shows"}`}
-            </Button>
-          </div>
+          <DatabaseButton type={type} id={id} />
         </div>
       ) : (
         <img src={spinner} alt="Loading..." className="modal__loading-spinner" />

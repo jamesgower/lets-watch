@@ -1,4 +1,4 @@
-import passport from "passport";
+import passport, { Profile } from "passport";
 import mongoose from "mongoose";
 
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -8,12 +8,12 @@ const RedditStrategy = require("passport-reddit").Strategy;
 
 const User = mongoose.model("users");
 
-passport.serializeUser((user, done): void => {
+passport.serializeUser((user: Profile, done: CallableFunction): void => {
   done(null, user.id);
 });
 
-passport.deserializeUser((id, done): void => {
-  User.findById(id, (err, user): void => {
+passport.deserializeUser((id: string, done: CallableFunction): void => {
+  User.findById(id, (err: Error, user: Profile): void => {
     done(err, user);
   });
 });

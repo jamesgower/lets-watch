@@ -1,6 +1,5 @@
 import crypto from "crypto";
 import passport from "passport";
-import { upload, storage } from "../services/multer";
 
 module.exports = (app): void => {
   app.get(
@@ -31,19 +30,12 @@ module.exports = (app): void => {
 
   app.get("/auth/reddit", (req, res) => {
     req.session.state = crypto.randomBytes(32).toString("hex");
-    passport.authenticate("reddit", { state: req.session.state, duration: "permanent" })(
-      req,
-      res,
-    );
+    const options = { state: req.session.state, duration: "permanent" };
+    passport.authenticate("reddit", options)(req, res);
   });
 
   app.get("/auth/reddit/callback", passport.authenticate("reddit"), (req, res): void => {
     res.redirect("/");
-  });
-
-  app.post("/api/upload", upload.single("file"), (req, res, err) => {
-    if (err) throw err;
-    res.status(201).send();
   });
 
   app.get("/api/current_user", (req, res): void => {

@@ -28,6 +28,7 @@ export interface APIResponse {
 }
 
 export interface FetchCurrentMovieResponse {
+  id: number;
   title: string;
   tagline: string;
   genres: [
@@ -46,6 +47,7 @@ export interface FetchCurrentMovieResponse {
 }
 
 export interface FetchCurrentTVResponse {
+  id: number;
   name: string;
   backdrop_path: string;
   first_air_date: string;

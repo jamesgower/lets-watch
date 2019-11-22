@@ -1,49 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { createBrowserHistory } from "history";
-import { connect } from "react-redux";
-import Home from "../components/home/Home";
 import NotFoundPage from "../components/misc/NotFoundPage";
+import Home from "../components/home/Home";
 import Login from "../components/login/Login";
-import { AuthState, ProfileState, AppState } from "../interfaces/app.i";
-import * as authActions from "../actions/auth.actions";
-import PrivateRoute from "./PrivateRoute";
-import Account from "../components/account/Account";
+import MyTV from "../components/my-tv/MyTV";
+import MyMovies from "../components/my-tv/MyMovies";
+import Movies from "../components/tv/Movies";
+import TVShows from "../components/tv/TVShows";
+import { AppState } from "../interfaces/app.i";
 
-export const history = createBrowserHistory();
+const history = createBrowserHistory();
 
-interface RouterProps {
-  auth: AuthState;
-  profile: ProfileState;
-  fetchUser: () => void;
-}
+const AppRouter: React.SFC = (): JSX.Element => {
+  const profile = useSelector((state: AppState) => state.auth.profile);
+  return (
+    <Router history={history}>
+      <Switch>
+        <Route path="/" exact component={profile ?? false ? Home : Login} />
+        <Route path="/my-tv-shows" component={MyTV} />
+        <Route path="/my-movies" component={MyMovies} />
+        <Route path="/movies" component={Movies} />
+        <Route path="/tv-shows" component={TVShows} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Router>
+  );
+};
 
-class AppRouter extends Component<RouterProps> {
-  constructor(props) {
-    super(props);
-    const { fetchUser } = this.props;
-    fetchUser();
-  }
-
-  public render(): JSX.Element {
-    const {
-      auth: { profile },
-    } = this.props;
-    const isAuth = !!profile;
-    return (
-      <Router history={history}>
-        <Switch>
-          <Route path="/" exact component={isAuth ? Home : Login} />
-          {/* <Route path="/movies" component={Movies} />
-          <Route path="/tv-shows" component={TVShows} /> */}
-          <PrivateRoute auth={isAuth} path="/account" component={Account} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>
-    );
-  }
-}
-
-const mapStateToProps = ({ auth }): AppState => ({ auth });
-
-export default connect(mapStateToProps, authActions)(AppRouter);
+export default AppRouter;

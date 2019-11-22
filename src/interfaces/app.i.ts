@@ -19,4 +19,8 @@ export interface ProfileState {
   firstName: string;
   lastName: string;
   email: string;
+  tvShows: number[];
+  movies: number[];
+  error?: boolean;
+  image: string;
 }

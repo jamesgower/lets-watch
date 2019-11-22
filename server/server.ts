@@ -6,19 +6,23 @@ import cookieSession from "cookie-session";
 import bodyParser from "body-parser";
 import "./models/User.model";
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 require("./services/passport");
 
 const path = require("path");
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_DB_URI, {
-  useNewUrlParser: true,
   useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
 });
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8081;
 
 app.use(cors());
 app.use(bodyParser.json());

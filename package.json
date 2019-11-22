@@ -4,9 +4,11 @@
   "description": "Find and save your favourite movies and TV shows",
   "main": "app.ts",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --mode development --devtool inline-source-map --open --hot",
     "server": "ts-node server/server.ts",
-    "dev": "concurrently \"npm run start\" \"npm run server\""
+    "nodemon": "nodemon",
+    "dev": "concurrently \"npm run start\" \"npm run nodemon\"",
+    "heroku-postbuild": "webpack -p --mode production"
   },
   "repository": {
     "type": "git",
@@ -54,6 +56,7 @@
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "nodemon": "^1.19.4",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^1.19.1",
     "sass-loader": "^7.3.1",
@@ -71,6 +74,10 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
+    "@types/cookie-session": "^2.0.37",
+    "@types/cors": "^2.8.6",
+    "@types/mongoose": "^5.5.32",
+    "@types/passport": "^1.0.1",
     "@types/react-dom": "^16.9.4",
     "@types/react-router-dom": "^4.3.5",
     "animate.css": "^3.7.2",
@@ -88,7 +95,7 @@
     "express": "^4.17.1",
     "gridfs-stream": "^1.1.1",
     "history": "^4.10.1",
-    "mongoose": "^5.7.9",
+    "mongoose": "^5.7.11",
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^4.0.0",
     "node-sass": "^4.13.0",
