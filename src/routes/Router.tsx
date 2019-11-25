@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { createBrowserHistory } from "history";
+import { useSelector } from "react-redux";
 import NotFoundPage from "../components/misc/NotFoundPage";
 import Home from "../components/home/Home";
 import Login from "../components/login/Login";

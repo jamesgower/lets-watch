@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Database Button test cases snapshot test should render the connected component 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <DatabaseButton
+    id={123}
+    type="movie"
+  >
+    <div
+      className="modal__button-container"
+    >
+      <Button
+        className="modal__button"
+        color="success"
+        onClick={[Function]}
+        outline={true}
+        size="lg"
+        style={
+          Object {
+            "display": "inline-block",
+          }
+        }
+        tag="button"
+      >
+        <button
+          aria-label={null}
+          className="modal__button btn btn-outline-success btn-lg"
+          onClick={[Function]}
+          style={
+            Object {
+              "display": "inline-block",
+            }
+          }
+          type="button"
+        >
+          Add to My Movies
+        </button>
+      </Button>
+    </div>
+  </DatabaseButton>
+</Provider>
+`;

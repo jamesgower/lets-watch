@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import ReactModal from "react-modal";
-import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { useDispatch, useSelector } from "react-redux";
 import * as tmdbActions from "../../actions/tmdb.actions";
 import spinner from "./spinner.gif";
 import DatabaseButton from "./DatabaseButton";
@@ -13,7 +13,7 @@ interface ModalProps {
   isOpen: boolean;
   closeModal: () => void;
   id: number;
-  type: string;
+  type: "tv" | "movie";
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, id, type }): JSX.Element => {

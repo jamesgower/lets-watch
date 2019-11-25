@@ -6,16 +6,15 @@ import * as authActions from "../../actions/auth.actions";
 import spinner from "./spinSmall.gif";
 
 interface DatabaseButtonProps {
-  type: string;
+  type: "movie" | "tv";
   id: number;
 }
 
 const DatabaseButton: React.FC<DatabaseButtonProps> = ({ type, id }): JSX.Element => {
-  console.log(type);
   const { tvShows, movies } = useSelector(
     (state: AppState): ProfileState => state.auth.profile,
   );
-  const [requesting, setRequesting] = useState(false);
+  const [requesting, setRequesting] = React.useState(false);
   const dispatch = useDispatch();
   const added = type === "movie" ? movies.indexOf(id) !== -1 : tvShows.indexOf(id) !== -1;
   const text = requesting ? (

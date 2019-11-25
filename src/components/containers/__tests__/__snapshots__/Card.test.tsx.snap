@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Card /> snapshot test should render the component correctly 1`] = `
+<Fragment>
+  <div
+    className="card__container animated fadeIn"
+  >
+    <img
+      alt="test"
+      className="card__image"
+      onClick={[Function]}
+      src="http://image.tmdb.org/t/p/w300/test"
+      style={
+        Object {
+          "border": "none",
+        }
+      }
+    />
+    <p
+      className="card__text"
+    >
+      test
+    </p>
+  </div>
+</Fragment>
+`;

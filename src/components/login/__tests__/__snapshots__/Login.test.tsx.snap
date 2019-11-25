@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login snapshot should create Login snapshot 1`] = `
+<Fragment>
+  <div
+    className="login__container"
+    style={
+      Object {
+        "background": "url([object Object]) no-repeat center center",
+      }
+    }
+  >
+    <div
+      className="login__button-container"
+    >
+      <p
+        className="login__title"
+      >
+        Lets Watch
+      </p>
+      <p
+        className="login__text"
+      >
+        Login to begin searching for TV shows & Movies
+      </p>
+      <LoginButton
+        icon="fab fa-google"
+        key="google"
+        link="/auth/google"
+        name="google"
+        text="Login with Google"
+      />
+      <LoginButton
+        icon="fab fa-facebook-f"
+        key="facebook"
+        link="/auth/facebook"
+        name="facebook"
+        text="Login with Facebook"
+      />
+      <LoginButton
+        icon="fab fa-github-alt"
+        key="github"
+        link="/auth/github"
+        name="github"
+        text="Login with GitHub"
+      />
+      <LoginButton
+        icon="fab fa-reddit-alien"
+        key="reddit"
+        link="/auth/reddit"
+        name="reddit"
+        text="Login with Reddit"
+      />
+    </div>
+  </div>
+</Fragment>
+`;

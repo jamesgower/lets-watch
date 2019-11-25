@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 
 interface CardProps {
-  posterLink: string;
+  posterLink?: string;
   title: string;
   id: number;
   type: string;
@@ -11,12 +11,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ posterLink, title, id, type }): JSX.Element => {
-  const [open, isOpen] = useState(false);
+  const [open, isOpen] = React.useState(false);
   return (
     <>
       <div className="card__container animated fadeIn">
         <img
           className="card__image"
+          onClick={(): void => isOpen(true)}
           src={
             posterLink
               ? `http://image.tmdb.org/t/p/w300/${posterLink}`
@@ -24,7 +25,6 @@ const Card: React.FC<CardProps> = ({ posterLink, title, id, type }): JSX.Element
           }
           style={{ border: posterLink ? "none" : "1px solid white" }}
           alt={title}
-          onClick={(): void => isOpen(true)}
         />
         <p className="card__text">{title}</p>
       </div>

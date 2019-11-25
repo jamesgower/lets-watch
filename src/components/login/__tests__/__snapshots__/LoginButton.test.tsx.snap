@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Button snapshots should create Facebook login button snapshot 1`] = `
+<button
+  className="login-button__btn btn__facebook"
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="login-button__icon fab fa-facebook-f"
+  />
+  <p
+    className="login-button__text"
+  >
+    Login with Facebook
+  </p>
+</button>
+`;
+
+exports[`Login Button snapshots should create GitHub login button snapshot 1`] = `
+<button
+  className="login-button__btn btn__github"
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="login-button__icon fab fa-github-alt"
+  />
+  <p
+    className="login-button__text"
+  >
+    Login with Github
+  </p>
+</button>
+`;
+
+exports[`Login Button snapshots should create Google login button snapshot 1`] = `
+<button
+  className="login-button__btn btn__google"
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="login-button__icon fab fa-google"
+  />
+  <p
+    className="login-button__text"
+  >
+    Login with Google
+  </p>
+</button>
+`;
+
+exports[`Login Button snapshots should create Reddit login button snapshot 1`] = `
+<button
+  className="login-button__btn btn__reddit"
+  onClick={[Function]}
+  type="button"
+>
+  <i
+    className="login-button__icon fab fa-reddit-alien"
+  />
+  <p
+    className="login-button__text"
+  >
+    Login with Reddit
+  </p>
+</button>
+`;

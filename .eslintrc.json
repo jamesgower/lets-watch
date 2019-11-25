@@ -13,7 +13,8 @@
     "browser": true,
     "es6": true,
     "node": true,
-    "commonjs": true
+    "commonjs": true,
+    "jest": true
   },
   "rules": {
     "@typescript-eslint/no-var-requires": "off",

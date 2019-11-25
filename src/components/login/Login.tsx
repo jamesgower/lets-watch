@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import LoginButton from "./LoginButton";
 import landing from "./img/landing.jpg";
 import * as authActions from "../../actions/auth.actions";
 
-const Login: React.FC = (): JSX.Element => {
+interface Props {
+  store?: any;
+}
+const Login: React.FC<Props> = (): JSX.Element => {
   const dispatch = useDispatch();
   useEffect((): void => {
     dispatch(authActions.fetchUser());
-  }, []);
+  }, [dispatch]);
 
   const buttonInfo = [
     {
